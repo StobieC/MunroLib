@@ -8,7 +8,7 @@ import java.io.*
 class CSVReader {
 
     @Throws(FileNotFoundException::class, IOException::class)
-    fun readCSV(): List<Munro> {
+    fun readCSV(): MutableList<Munro> {
         val munros = mutableListOf<Munro>()
 
         val br = BufferedReader(
@@ -46,9 +46,8 @@ class CSVReader {
             val nineteen97      = munType(fields[26])
             val postNineteen97  = munType(fields[27])
 
-
             munros.add(Munro(runningNo, dobihNumber, streetmapUrl, geographUrl, hillBaggingUrl, name,
-                smcSection, rhbSection, section, heightMetre, heightFt, map150, map125, gridRef,
+                smcSection, rhbSection, section, Integer.parseInt(heightMetre), Integer.parseInt(heightFt), map150, map125, gridRef,
                 gridRefXy, xCoord, yCoord, eighten81, nineteen21, nineteen33, ninteen53,
                 nineteen69, nineteen74, nineteen81, nineteen84, nineteen90, nineteen97,
                 postNineteen97, "comments"))
