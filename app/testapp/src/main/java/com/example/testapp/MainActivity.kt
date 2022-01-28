@@ -17,8 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val csvReader = CSVReader()
-        munros = csvReader.readCSV()
+        munros = CSVReader.readCSV()
         munros.filterMunro(minHeight = 950)
         munros.filter { it.heightMetre > 975 }
         for (mun in munros) {

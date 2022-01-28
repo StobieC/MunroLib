@@ -9,11 +9,15 @@ fun MutableList<MunroResult>.filterMunro(sortingCategory: SortingCategory = Sort
                                          hillCategory: MunType = MunType.BLANK, resultsLimit: Int = 0): List<MunroResult> {
 
 //    filter by height
-    if (minHeight > 0) {
-        this.removeAll { it.heightMetre < minHeight }
-    }
-    if (maxHeight < Integer.MAX_VALUE) {
-        this.removeAll { it.heightMetre > maxHeight }
+    if (minHeight < maxHeight) {
+        if (minHeight > 0) {
+            this.removeAll { it.heightMetre < minHeight }
+        }
+        if (maxHeight < Integer.MAX_VALUE) {
+            this.removeAll { it.heightMetre > maxHeight }
+        }
+    } else {
+        print("Cannot filter if min height is greater than max height")
     }
 
     //filter by hill category
@@ -40,7 +44,7 @@ fun MutableList<MunroResult>.filterMunro(sortingCategory: SortingCategory = Sort
         }
     }
 
-    //Limit to top x results
+    //Limit to top x results / makes sure results limit is greater than 0
     if (resultsLimit > 0) {
         for ((index) in this.withIndex()) {
              if (index > resultsLimit) this.removeAt(index)
@@ -49,6 +53,7 @@ fun MutableList<MunroResult>.filterMunro(sortingCategory: SortingCategory = Sort
 
    return this
 }
+
 
 enum class SortingCategory {
     ALPHABETICALLY,
