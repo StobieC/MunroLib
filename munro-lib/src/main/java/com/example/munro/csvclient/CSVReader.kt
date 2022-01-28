@@ -21,7 +21,31 @@ class CSVReader {
                 val gridRef         = fields[13]
                 val postNineteen97  = munType(fields[27])
 
-                munroResults.add(MunroResult(name, Integer.parseInt(heightMetre), postNineteen97, gridRef))
+                munroResults.add(MunroResult(name, heightMetre.toDouble(), postNineteen97, gridRef))
+            }
+
+            br.close()
+            return munroResults
+        }
+
+        fun readCSV(file: BufferedInputStream): MutableList<MunroResult> {
+            val munroResults = mutableListOf<MunroResult>()
+
+            val br = file.bufferedReader()
+            //skip first line
+            br.readLine()
+            br.forEachLine {
+                val fields = it.split(",".toRegex()).toTypedArray()
+
+                val name            = fields[6]
+                val heightMetre     = fields[10]
+                val gridRef         = fields[14]
+                val postNineteen97  = munType(fields[28])
+
+
+
+                if (name.isNotBlank() && heightMetre.isNotBlank() && gridRef.isNotBlank())
+                    munroResults.add(MunroResult(name, heightMetre.toDouble(), postNineteen97, gridRef))
             }
 
             br.close()
