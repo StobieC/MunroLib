@@ -6,6 +6,7 @@ import android.util.Log
 import com.example.munro.Munro
 import com.example.munro.csvclient.CSVReader
 import com.example.munro.util.OrderingSortType
+import com.example.munro.util.SortingCategory
 import com.example.munro.util.sortByHeight
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         val csvReader = CSVReader()
         munros = csvReader.readCSV()
-        munros.sortByHeight(OrderingSortType.ASCENDING)
+        munros.sortByHeight(sortingCategory = SortingCategory.ALPHABETICALLY, orderingSortType = OrderingSortType.DESCENDING)
         for (mun in munros) {
             Log.d("MUNRO", mun.name)
         }

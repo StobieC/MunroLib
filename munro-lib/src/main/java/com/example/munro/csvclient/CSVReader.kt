@@ -61,18 +61,7 @@ class CSVReader {
         return munros
     }
 
-    fun munType(munString: String): MunType {
+    private fun munType(munString: String): MunType {
         return if (munString == "MUN") { MunType.MUN } else if (munString == "TOP") { MunType.TOP} else { MunType.BLANK}
     }
-
-    fun sortAlphabetically(): List<Munro> {
-        //TODO
-        return emptyList()
-    }
-
-    fun sortByHeight():List<Munro> {
-        //TODO
-        return emptyList()
-    }
-
 }
