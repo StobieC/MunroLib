@@ -5,7 +5,7 @@ import com.example.munro.Munro
 import java.util.*
 
 
-fun MutableList<Munro>.sortByHeight(sortingCategory: SortingCategory = SortingCategory.NONE, orderingSortType: OrderingSortType = OrderingSortType.NONE, minHeight:Int = 0, maxHeight: Int = Int.MAX_VALUE, hillCategory: MunType = MunType.BLANK): List<Munro> {
+fun MutableList<Munro>.filterMunro(sortingCategory: SortingCategory = SortingCategory.NONE, orderingSortType: OrderingSortType = OrderingSortType.NONE, minHeight:Int = 0, maxHeight: Int = Int.MAX_VALUE, hillCategory: MunType = MunType.BLANK): List<Munro> {
 
     //filter by height
     if (minHeight > 0) {
@@ -27,9 +27,9 @@ fun MutableList<Munro>.sortByHeight(sortingCategory: SortingCategory = SortingCa
     //sort by height/alphabetically
     if (sortingCategory == SortingCategory.HEIGHT) {
         if (orderingSortType == OrderingSortType.ASCENDING) {
-            this.sortBy { it.heightMetre }
+            this.sortedWith(compareBy<Munro> {it.heightMetre}.thenBy { it.name })
         } else if (orderingSortType == OrderingSortType.DESCENDING) {
-            this.sortByDescending { it.heightMetre }
+            this.sortedWith(compareBy<Munro> {it.heightMetre}.thenBy { it.name }).reversed()
         }
     } else if (sortingCategory == SortingCategory.ALPHABETICALLY) {
         if (orderingSortType == OrderingSortType.ASCENDING) {

@@ -7,7 +7,7 @@ import com.example.munro.Munro
 import com.example.munro.csvclient.CSVReader
 import com.example.munro.util.OrderingSortType
 import com.example.munro.util.SortingCategory
-import com.example.munro.util.sortByHeight
+import com.example.munro.util.filterMunro
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         val csvReader = CSVReader()
         munros = csvReader.readCSV()
-        munros.sortByHeight(sortingCategory = SortingCategory.ALPHABETICALLY, orderingSortType = OrderingSortType.DESCENDING)
+        munros.filterMunro(sortingCategory = SortingCategory.ALPHABETICALLY, orderingSortType = OrderingSortType.DESCENDING)
         for (mun in munros) {
             Log.d("MUNRO", mun.name)
         }
