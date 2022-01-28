@@ -23,9 +23,7 @@ class MainActivity : AppCompatActivity() {
         munros = CSVReader.readCSV(file)
         munros.filterMunro(minHeight = 950)
         for (mun in munros) {
-            Log.d("MUNRO", "${mun.name} ${mun.heightMetre}")
+            Log.d("MUNRO", "${mun.name} ${mun.heightMetre} ${mun.gridReference} ${mun.hillCategory}")
         }
-
-        Log.d("MUNRO", "${munros.filterMunro(minHeight = 950).size}")
     }
 }
